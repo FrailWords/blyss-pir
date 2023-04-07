@@ -1,0 +1,12 @@
+node_modules
+/dist
+/target
+/pkg
+/wasm-pack.log
+
+.env/
+*.pyc
+*build/
+.DS_Store
+.idea
+*.iml
