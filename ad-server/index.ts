@@ -11,6 +11,10 @@ const app: Express = express();
 app.use(jsonBodyParser, formBodyParser);
 const port = process.env.PORT;
 
+const path = require('path');
+const ads_dir = path.join(__dirname, 'ads');
+app.use(express.static(ads_dir));
+
 import type { Bucket } from '@blyss/sdk';
 const blyss = require('@blyss/sdk/node');
 process.removeAllListeners('warning');
@@ -22,9 +26,13 @@ async function main() {
 
     // Write some data to it
     await bucket.write({
-        Health: [],
-        Electronics: [],
-        Insurance: []
+        health: [],
+        electronics: [],
+        finance: []
+    });
+
+    app.get('/', (req: Request, res: Response) => {
+        res.send('Express + TypeScript Server');
     });
 
     app.get('/clear', async (req: Request, res: Response) => {
@@ -36,10 +44,10 @@ async function main() {
         const adCategory = req.query.category as string;
         const image = req.body.img;
         if (adCategory && image) {
-            const result = (await bucket.privateRead(adCategory)) as string[] || [];
+            const result = (await bucket.privateRead(adCategory.toLowerCase())) as string[] || [];
             result.push(image);
             await bucket.write({
-                [adCategory]: result
+                [adCategory.toLowerCase()]: result
             })
             res.json({result})
         }
