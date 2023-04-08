@@ -14,6 +14,8 @@ Follow - https://rustwasm.github.io/wasm-pack/installer/
 
 # Build `Blyss SDK` 
 
+Thanks to https://github.com/blyssprivacy/sdk for an awesome job!
+
 1. Clone `Blyss SDK`
 
 ```bash
