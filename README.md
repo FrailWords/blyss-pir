@@ -32,6 +32,10 @@ npm install
 npm run build
 ```
 
+# Components
+
+![arch.png](arch.png)
+
 # Run `Blyss` PIR server
 
 1. Go to `lib/server` directory.
