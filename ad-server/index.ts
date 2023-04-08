@@ -45,7 +45,7 @@ async function main() {
         const image = req.body.img;
         if (adCategory && image) {
             const result = (await bucket.privateRead(adCategory.toLowerCase())) as string[] || [];
-            result.push(image);
+            result.push(`http://localhost:8002/${adCategory.toLowerCase()}/${image}`);
             await bucket.write({
                 [adCategory.toLowerCase()]: result
             })
