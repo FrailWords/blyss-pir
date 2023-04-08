@@ -10,6 +10,11 @@ const app: Express = express();
 app.use(bodyParser);
 const port = process.env.PORT;
 
+const cors = require('cors');
+app.use(cors({
+    origin: '*'
+}));
+
 import type { Bucket } from '@blyss/sdk';
 const blyss = require('@blyss/sdk/node');
 process.removeAllListeners('warning');
